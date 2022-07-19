@@ -1,8 +1,34 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import './App.css'
 
-function App() {
+const App = () => {
+  const [text, setText] = useState('')
+  const [item, setItem] = useState([])
+
+  const handleSubmit = event => {
+    if (text.length == 0) return
+    setItem(item.concat(text))
+  }
+
+  return (
+    <div>
+      <div>
+        <input value={text} onChange={(e) => setText(e.target.value)} />
+        <input type="submit" onClick={handleSubmit} value="Adicionar" />
+      </div>
+      <div> 
+        {item.map(i => (
+        <div>
+          <input type="checkbox" />
+          <label>{i}</label>
+        </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+/*function App() {
   const [count, setCount] = useState(0)
 
   return (
@@ -29,6 +55,6 @@ function App() {
       </p>
     </div>
   )
-}
+}*/
 
 export default App
